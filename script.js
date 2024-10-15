@@ -26,7 +26,9 @@ function displayBlogs(articles) {
     img.alt = article.title;
 
     const title = document.createElement("h2");
-    title.textContent = article.title;
+   // title.textContent = article.title;
+    const truncateTitle=article.title.length> 30? article.title.slice(0,30)+"......." : article.title;
+    title.textContent=truncateTitle;
 
     const description = document.createElement("p");
     description.textContent = article.description || "No description available"; // Fallback for missing description
