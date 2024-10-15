@@ -5,6 +5,7 @@
 }
 body{
     position:relative;
+    background-color:#ffddaa;
 }
 /*global css*/
 .objectwidth{
@@ -69,10 +70,14 @@ margin-left:10px ;
     cursor:pointer;
     padding:1rem;
     margin:10px;
+    background-color:#fff;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Smooth transition for hover */
     
 }
+
 .blog-card:hover{
     box-shadow:4px 2px rgba(0,0,0,0.1);
+    transform: scale(1.05); /* Slight scale-up on hover */
 }
 .blog-card img{
     width:100%;
@@ -80,7 +85,9 @@ margin-left:10px ;
     object-fit:cover;
     border-radius:5px;
     margin-bottom:1rem;
+
 }
+
 .blog-card h2{
     color:#141414;
     font-size:1.7rem;
