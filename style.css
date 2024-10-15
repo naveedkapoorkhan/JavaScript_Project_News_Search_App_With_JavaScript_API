@@ -93,5 +93,23 @@ margin-left:10px ;
     padding-top:0.7rem;
 }
 
+/* media to add to make it responsive*/
+@media(max-width: 1000px){
+    nav{
+        padding:0 20px;
+    }
+.navbar .logo {
+    
+    font-size: 1.8rem;
+}
+#search-input {
+    width: 150px;
+    padding: 10px 10px;
+    
+}
+.blog-card{
+    width:100%;
+}
 
+}
 
