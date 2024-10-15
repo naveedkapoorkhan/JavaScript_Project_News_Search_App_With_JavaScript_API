@@ -27,11 +27,30 @@ function displayBlogs(articles) {
 
     const title = document.createElement("h2");
    // title.textContent = article.title;
-    const truncateTitle=article.title.length> 30? article.title.slice(0,30)+"......." : article.title;
+   // const truncateTitle=article.title.length> 30? article.title.slice(0,30)+"......." : article.title;
+    //title.textContent=truncateTitle;
+    let truncateTitle;
+    if(article.title.length>30){
+        truncateTitle=article.title.slice(0,30)+".......";
+    }
+    else{
+        truncateTitle=article.title;
+    }
     title.textContent=truncateTitle;
+
+
 
     const description = document.createElement("p");
     description.textContent = article.description || "No description available"; // Fallback for missing description
+    let truncateDes;
+    if(article.description.length>75){
+        truncateDes=article.description.slice(0,30)+".......";
+    }
+    else{
+        truncateDes=article.description;
+    }
+    description.textContent=truncateDes;
+
 
     blogCard.appendChild(img);
     blogCard.appendChild(title);
