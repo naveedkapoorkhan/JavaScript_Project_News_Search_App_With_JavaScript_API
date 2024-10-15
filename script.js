@@ -1,5 +1,7 @@
 const apiKey = "32564b372c6442bbbccbf9fbe230209d";
 const blogContainer = document.getElementById("blog-container");
+const searchButton = document.getElementById("search-button");
+const searchField = document.getElementById("search-input");
 
 /* Fetch random news articles */
 async function fetchRandomNews() {
@@ -10,6 +12,32 @@ async function fetchRandomNews() {
     return data.articles; // Return the news articles
   } catch (error) {
     console.error("Error fetching random news", error);
+    return [];
+  }
+}
+
+searchButton.addEventListener("click", async () => {
+ // event.preventDefault(); // Prevent page reload (if needed)
+  const query = searchField.value.trim();
+  if (query !== "") {
+    try {
+      const articles = await fetchNewsQuery(query);
+      displayBlogs(articles);
+    } catch (error) {
+      console.log("Error fetching news by query", error);
+    }
+  }
+});
+
+async function fetchNewsQuery(query) {
+  try {
+    // Remove the invalid `country=us` parameter
+    const apiUrl = `https://newsapi.org/v2/everything?q=${query}&pageSize=26&apiKey=${apiKey}`;
+    const response = await fetch(apiUrl);
+    const data = await response.json();
+    return data.articles; // Return the news articles
+  } catch (error) {
+    console.error("Error fetching news by query", error);
     return [];
   }
 }
@@ -26,38 +54,29 @@ function displayBlogs(articles) {
     img.alt = article.title;
 
     const title = document.createElement("h2");
-   // title.textContent = article.title;
-   // const truncateTitle=article.title.length> 30? article.title.slice(0,30)+"......." : article.title;
-    //title.textContent=truncateTitle;
     let truncateTitle;
-    if(article.title.length>30){
-        truncateTitle=article.title.slice(0,30)+".......";
+    if (article.title.length > 30) {
+      truncateTitle = article.title.slice(0, 30) + ".......";
+    } else {
+      truncateTitle = article.title;
     }
-    else{
-        truncateTitle=article.title;
-    }
-    title.textContent=truncateTitle;
-
-
+    title.textContent = truncateTitle;
 
     const description = document.createElement("p");
-    description.textContent = article.description || "No description available"; // Fallback for missing description
     let truncateDes;
-    if(article.description.length>75){
-        truncateDes=article.description.slice(0,75)+".......";
+    if (article.description && article.description.length > 75) {
+      truncateDes = article.description.slice(0, 75) + ".......";
+    } else {
+      truncateDes = article.description || "No description available";
     }
-    else{
-        truncateDes=article.description;
-    }
-    description.textContent=truncateDes;
-
+    description.textContent = truncateDes;
 
     blogCard.appendChild(img);
     blogCard.appendChild(title);
     blogCard.appendChild(description);
-    blogCard.addEventListener("click",()=>{
-        window.open(article.url,"_blank")
-    })
+    blogCard.addEventListener("click", () => {
+      window.open(article.url, "_blank");
+    });
     blogContainer.appendChild(blogCard);
   });
 }
