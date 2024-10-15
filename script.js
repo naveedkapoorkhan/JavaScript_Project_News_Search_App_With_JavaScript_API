@@ -44,7 +44,7 @@ function displayBlogs(articles) {
     description.textContent = article.description || "No description available"; // Fallback for missing description
     let truncateDes;
     if(article.description.length>75){
-        truncateDes=article.description.slice(0,30)+".......";
+        truncateDes=article.description.slice(0,75)+".......";
     }
     else{
         truncateDes=article.description;
@@ -55,6 +55,9 @@ function displayBlogs(articles) {
     blogCard.appendChild(img);
     blogCard.appendChild(title);
     blogCard.appendChild(description);
+    blogCard.addEventListener("click",()=>{
+        window.open(article.url,"_blank")
+    })
     blogContainer.appendChild(blogCard);
   });
 }
