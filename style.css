@@ -7,7 +7,7 @@ body{
     position:relative;
 }
 /*global css*/
-.obj-width{
+.objectwidth{
     max-width:1200px;
     margin:auto;
 }
@@ -45,7 +45,7 @@ padding:10px 20px;
 background-color:#138065;
 color:#fff;
 border:none;
-font:size:18px;
+font-size:18px;
 cursor:pointer;
 border-radius:5px;
 margin-left:10px ;
@@ -57,7 +57,6 @@ margin-left:10px ;
     /*its not override global css so we keep padding margin:3rem 0;*/
     padding:3rem 0;
     display:flex;
-   /* flex-direction:column;*/
     justify-content:flex-start;
     align-items:flex-start;
     flex-wrap:wrap;
@@ -94,7 +93,7 @@ margin-left:10px ;
 }
 
 /* media to add to make it responsive*/
-@media(max-width: 1000px){
+@media(max-width: 500px){
     nav{
         padding:0 20px;
     }
@@ -112,4 +111,5 @@ margin-left:10px ;
 }
 
 }
+
 
